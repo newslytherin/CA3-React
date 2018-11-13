@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import facade from "./apiFacade";
+import facade from "./../apiFacade";
 
 export default class Welcome extends Component{
     constructor(props) {
