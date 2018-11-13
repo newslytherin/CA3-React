@@ -1,5 +1,5 @@
 //------------------TODO------------------------
-const URL = "TBD";
+const URL = "https://swapi.co";
 //------------------TODO------------------------
 
 function handleHttpErrors(res) {
