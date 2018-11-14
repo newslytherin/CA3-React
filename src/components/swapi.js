@@ -1,8 +1,9 @@
 import React from "react"
+import BootstrapTable from 'react-bootstrap-table-next';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import BootstrapTable from 'react-bootstrap-table-next';
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const URL = "https://swapi.co/api/people/";
 
@@ -69,16 +70,16 @@ function getOptions(total) {
     return {
         paginationSize: 5,
         pageStartIndex: 1,
-        // hide: true, // Hide the  dropdown always
+        hide: true, // Hide the  dropdown always
         hidePageListOnlyOnePage: true, // Hide the pagination list when only one page
         firstPageText: 'First',
         prePageText: 'Back',
         nextPageText: 'Next',
         lastPageText: 'Last',
         sizePerPageList: [{
-            text: '4', value: 4
+            text: '10', value: 10
         }, {
-            text: 'All', value: (total !== 0) ? total : 10
+            text: 'All', value: (total > 0) ? total : 10
         }]
     };
 }
