@@ -1,11 +1,11 @@
 import React from "react"
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
+import filterFactory from 'react-bootstrap-table2-filter';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-const URL = "https://swapi.co/api/people/";
+const URL = "http://localhost:8080/bob/api/swapi/async/amount/5";
 
 export default class swapi extends React.Component {
     constructor(props) {
@@ -14,18 +14,16 @@ export default class swapi extends React.Component {
     }
 
     async componentDidMount(){
-        const swl = [] 
-        swl.push(await fetch(URL+"1/").then(res => res.json())) 
-        swl.push(await fetch(URL+"2/").then(res => res.json())) 
-        swl.push(await fetch(URL+"3/").then(res => res.json())) 
-        this.setState({swl})
+        const swl = await fetch(URL).then(res => res.json());
+        this.setState({swl}) 
     }
-
+    
     render() {
         const options = getOptions()
         const columns = getColumns();
         return (
             <div>
+                {/* <input id="amount" type="number" min="1" max="86"/> */}
                 <BootstrapTable
                     striped
                     hover
