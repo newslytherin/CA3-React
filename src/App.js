@@ -19,7 +19,7 @@ export default class App extends Component {
       <Router>
         <div>
           <ul className="header">
-            <li>{this.state.user}</li>
+            <li>{this.state.username}</li>
             <li>
               <NavLink exact to="/">Home</NavLink>
             </li>
@@ -38,8 +38,8 @@ export default class App extends Component {
           </ul>
           <hr />
           <Route exact path="/" render={() => <Welcome setname={this.setname} />} />
-          <Route path="/user" component={User} />
-          <Route path="/admin" component={Admin} />
+          <Route path="/user"  render={() => <User username={this.state.username} />} />
+          <Route path="/admin" render={() => <Admin username={this.state.username} />} />
           <Route path="/swapi" component={SWAPI} />
           <Route path="/large-data-set" component={LargeDataSet} />
         </div>

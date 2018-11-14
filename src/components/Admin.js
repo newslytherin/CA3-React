@@ -3,7 +3,7 @@ import React, { Component } from "react"
 export default class Admin extends Component{
     constructor(props){
         super(props)
-        this.state = {name: "Welcome"};
+        this.state = {name: props.username};
     }
     render(){
         return(
@@ -12,3 +12,4 @@ export default class Admin extends Component{
             </div>
         );
     }
+}
