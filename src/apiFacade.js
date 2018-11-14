@@ -1,6 +1,4 @@
-//------------------TODO------------------------
-const URL = "https://swapi.co";
-//------------------TODO------------------------
+const URL = "http://localhost:8080/bob";
 
 function handleHttpErrors(res) {
     if (!res.ok) {

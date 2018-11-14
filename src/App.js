@@ -9,17 +9,20 @@ import LargeDataSet from "./components/LargeDataSet";
 export default class App extends Component {
   constructor(props){
     super(props);
-    this.state = {username: "Username"}
+    this.state = {username: "Username", loggedIn: false}
   }
   setname = (username) => {
     this.setState({username});
+  }
+  changeLoggedIn = () => {
+    this.setState({loggedIn: !this.state.loggedIn});
   }
   render() {
     return (
       <Router>
         <div>
           <ul className="header">
-            <li>{this.state.username}</li>
+            <li>{(this.state.loggedIn)?this.state.username:''}</li>
             <li>
               <NavLink exact to="/">Home</NavLink>
             </li>
@@ -37,7 +40,7 @@ export default class App extends Component {
             </li>
           </ul>
           <hr />
-          <Route exact path="/" render={() => <Welcome setname={this.setname} />} />
+          <Route exact path="/" render={() => <Welcome setname={this.setname} loggedIn={this.state.loggedIn} changeLoggedIn={this.changeLoggedIn} />} />
           <Route path="/user"  render={() => <User username={this.state.username} />} />
           <Route path="/admin" render={() => <Admin username={this.state.username} />} />
           <Route path="/swapi" component={SWAPI} />
