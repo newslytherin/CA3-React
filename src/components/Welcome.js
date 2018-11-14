@@ -13,6 +13,7 @@ export default class Welcome extends Component{
     login = (user, pass) => {
         facade.login(user,pass)
         .then(res =>this.setState({ loggedIn: true }));
+        this.props.setname(user);
     }
     render() {
         return (
@@ -40,8 +41,8 @@ class LogIn extends Component {
             <div>
                 <h2>Login</h2>
                 <form onSubmit={this.login} onChange={this.onChange} >
-                    <input placeholder="User Name" id="username" />
-                    <input placeholder="Password" id="password" />
+                    <input type="text" placeholder="User Name" id="username" />
+                    <input type="password" placeholder="Password" id="password" />
                     <button>Login</button>
                 </form>
             </div>

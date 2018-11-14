@@ -9,7 +9,10 @@ import LargeDataSet from "./components/LargeDataSet";
 export default class App extends Component {
   constructor(props){
     super(props);
-    this.state = {user: "Username"}
+    this.state = {username: "Username"}
+  }
+  setname = (username) => {
+    this.setState({username});
   }
   render() {
     return (
@@ -34,7 +37,7 @@ export default class App extends Component {
             </li>
           </ul>
           <hr />
-          <Route exact path="/" component={Welcome} />
+          <Route exact path="/" render={() => <Welcome setname={this.setname} />} />
           <Route path="/user" component={User} />
           <Route path="/admin" component={Admin} />
           <Route path="/swapi" component={SWAPI} />
