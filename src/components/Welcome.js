@@ -4,7 +4,7 @@ import facade from "./../apiFacade";
 export default class Welcome extends Component{
     constructor(props) {
         super(props);
-        this.state = { loggedIn: props.loggedIn }
+        this.state = { loggedIn: props.loggedIn, userinfo:{roles:props.roles} }
     }
     logout = () => {
         facade.logout();
@@ -12,19 +12,20 @@ export default class Welcome extends Component{
         this.setState({loggedIn:!this.state.loggedIn});
         this.props.setname('');
     }
-    login = (user, pass) => {
-        facade.login(user,pass)
-        .then(() => {
-            this.setState({loggedIn:!this.state.loggedIn});
-            this.props.changeLoggedIn();
-            this.props.setname(user);
-        });
+    login = async (user, pass) => {
+        let userinfo = await facade.login(user,pass);
+        this.props.setroles(userinfo.roles);
+        this.setState({userinfo});    
+        this.setState({loggedIn:!this.state.loggedIn});
+        this.props.changeLoggedIn();
+        this.props.setname(user);
+        
     }
     render() {
         return (
             <div>
                 {!this.state.loggedIn ? (<LogIn login={this.login} />) :
-                 (<div> <LoggedIn/> <button onClick={this.logout}>Logout</button> </div>)}
+                 (<div> <LoggedIn roles={this.state.userinfo.roles} /> <button onClick={this.logout}>Logout</button> </div>)}
             </div>
         );
     }
@@ -62,7 +63,11 @@ class LoggedIn extends Component {
         this.state= {dataFromServer: "Fetching!!"};
     }
     componentDidMount(){
-        facade.fetchData().then(res=> this.setState({dataFromServer: res}));
+        if(this.props.roles.includes('admin')){
+            facade.fetchDataAdmin().then(res=> this.setState({dataFromServer: res}));
+        } else {
+            facade.fetchDataUser().then(res=> this.setState({dataFromServer: res}));
+        }
     }
     render() {
         return (

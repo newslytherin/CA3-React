@@ -11,9 +11,13 @@ function handleHttpErrors(res) {
 }
 
 class ApiFacade {
-    fetchData = () => {
+    fetchDataUser = () => {
         const options = this.makeOptions("GET",true); //True add's the token
         return fetch(URL + "/api/info/user", options).then(handleHttpErrors);
+      }     
+    fetchDataAdmin = () => {
+        const options = this.makeOptions("GET",true); //True add's the token
+        return fetch(URL + "/api/info/admin", options).then(handleHttpErrors);
       }     
     login = (user, pass) => {
         const options = this.makeOptions("POST", true, {
@@ -23,7 +27,8 @@ class ApiFacade {
         return fetch(URL + "/api/login", options, true)
             .then(handleHttpErrors)
             .then(res => {
-                this.setToken(res.token)
+                this.setToken(res.token);
+                return res;
             })
     }
     setToken = (token) => {
