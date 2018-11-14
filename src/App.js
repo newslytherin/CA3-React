@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import Welcome from "./components/Welcome";
+import Swapi from "./components/swapi";
 
 class App extends Component {
  constructor(props) {
@@ -10,6 +11,7 @@ class App extends Component {
    return (
      <div>
        <Welcome />
+       <Swapi />
      </div>
    )
  }
