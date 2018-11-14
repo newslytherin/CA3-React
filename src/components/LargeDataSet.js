@@ -83,24 +83,3 @@ function getColumns() {
     }];
     return columns;
 }
-
-function getOptions(total, page) {
-    return {
-        paginationSize: 5,
-        pageStartIndex: 1,
-        hide: true, // Hide the  dropdown always
-        hidePageListOnlyOnePage: true, // Hide the pagination list when only one page
-        firstPageText: 'First',
-        prePageText: 'Back',
-        nextPageText: 'Next',
-        lastPageText: 'Last',
-        sizePerPageList: [{
-            text: '10', value: 10
-        }, {
-            text: '25', value: 25
-        },
-        {
-            text: 'All', value: (total > 0) ? total : 10
-        }]
-    };
-}
