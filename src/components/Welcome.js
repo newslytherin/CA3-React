@@ -17,11 +17,7 @@ export default class Welcome extends Component{
     render() {
         return (
             <div>
-                {!this.state.loggedIn ? (<LogIn login={this.login} />) :
-                ( <div>
-                    <LoggedIn/>
-                    <button onClick={this.logout}>Logout</button>
-                </div>)}
+                {!this.state.loggedIn ? (<LogIn login={this.login} />) : (<div> <LoggedIn/> <button onClick={this.logout}>Logout</button> </div>)}
             </div>
         );
     }
